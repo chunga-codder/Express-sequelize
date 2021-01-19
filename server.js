@@ -1,8 +1,11 @@
 const express = require('express');
-
+const db = require('./models')
+const routers = require('./routs');
 
 
 const app = express();
+
+app.use(routers);
 
 const PORT = process.env.PORT || 3000;
 
