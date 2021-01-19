@@ -49,16 +49,29 @@ routers.get('/all/:id',(req,res)=>{
 // deleting data from the table todoes
 
 routers.delete('/delete/:id',(req,res)=>{
-    db.todoes.destroy({
-        text:req.body.text
-    },{
+    db.todoes.destroy({ where:{
         id: req.body,id
+    }
     }).then(()=>{
         res.send('deleted')
     })
     .catch((err)=>{
         console.log(err)
     })
+});
+
+//updatting the table in the db
+
+routers.put('update',()=>{
+    db.update({
+id:req.body.id
+    },{
+text:req.body.text
+ }).then((data) => {
+     res.send(data)
+ }).catch((err) => {
+    console.log(err) 
+ });
 });
 
 module.exports = routers;
